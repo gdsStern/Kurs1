@@ -14,10 +14,6 @@ public class Employee {
         this.id = count++;
     }
 
-    void setLastFirstMiddleName(String lastFirstMiddleName) { //Сеттер
-        this.lastFirstMiddleName = lastFirstMiddleName;
-    }
-
     String getLastFirstMiddleName() { // Геттер
         return this.lastFirstMiddleName;
     }
@@ -42,16 +38,12 @@ public class Employee {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return department == employee.department && salary == employee.salary && id == employee.id && Objects.equals(lastFirstMiddleName, employee.lastFirstMiddleName);
+        return department == employee.department && salary == employee.salary && Objects.equals(lastFirstMiddleName, employee.lastFirstMiddleName);
     }
 
     @Override

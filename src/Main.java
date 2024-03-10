@@ -1,6 +1,7 @@
 public class Main {
+    public static Employee[] employees = new Employee[10];
     public static void main(String[] args) {
-        Employee[] employees = new Employee[10];
+
         employees[0] = new Employee("Иванов Иван Иванович", 1, 45504);
         employees[1] = new Employee("Ильин Гордей Григорьевич", 2, 48670);
         employees[2] = new Employee("Осипова Александра Давидовна", 1, 43560);
@@ -13,21 +14,23 @@ public class Main {
         employees[9] = new Employee("Семенов Вячеслав Владиславович", 4, 47130);
 
 
-        printToString(employees);
-        System.out.println(calculateSalaryCosts(employees));
-        System.out.println(calculateAverageSalary(employees));
-        printEmployees(employees);
-        System.out.println(findMinSalary(employees));
-        System.out.println(findMaxSalary(employees));
+        printToString();
+        System.out.println(calculateSalaryCosts());
+        System.out.println(calculateAverageSalary());
+        printEmployees();
+        Employee employee1 = findMinSalary();
+        System.out.println(employee1.getSalary());
+        Employee employee2 = findMaxSalary();
+        System.out.println(employee2.getSalary());
     }
 
-    public static void printToString(Employee[] employees) {
+    public static void printToString() {
         for (int i = 0; i < employees.length; i++) {
             System.out.println(employees[i]);
         }
     }
 
-    public static int calculateSalaryCosts(Employee[] employees) {
+    public static int calculateSalaryCosts() {
         int total = 0;
         for (int i = 0; i < employees.length; i++) {
             total += employees[i].getSalary();
@@ -35,32 +38,36 @@ public class Main {
         return total;
     }
 
-    public static double calculateAverageSalary(Employee[] employees) {
-        return (double) calculateSalaryCosts(employees)/employees.length;
+    public static double calculateAverageSalary() {
+        return (double) calculateSalaryCosts()/employees.length;
     }
 
-    public static void printEmployees(Employee[] employees) {
+    public static void printEmployees() {
         for (int i = 0; i < employees.length; i++) {
             System.out.println(employees[i].getLastFirstMiddleName());
         }
     }
-    public static int findMaxSalary(Employee[] employees) {
+    public static Employee findMaxSalary() {
         int max = employees[0].getSalary();
+        int count = 0;
         for (int i = 0; i < employees.length; i++) {
-            if (max > employees[i].getSalary()) {
+            if (max < employees[i].getSalary()) {
                 max = employees[i].getSalary();
+                count = i;
             }
         }
-        return max;
+        return employees[count];
     }
 
-    public static int findMinSalary(Employee[] employees) {
+    public static Employee findMinSalary() {
         int min = employees[0].getSalary();
+        int count = 0;
         for (int i = 0; i < employees.length; i++) {
-            if (min < employees[i].getSalary()) {
+            if (min > employees[i].getSalary()) {
                 min = employees[i].getSalary();
+                count = i;
             }
         }
-        return min;
+        return employees[count];
     }
 }
